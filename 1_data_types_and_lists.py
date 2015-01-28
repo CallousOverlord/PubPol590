@@ -66,8 +66,38 @@ list5 = range(5) #starting from zero to m-1
 s1 = Series(list4)
 s2 = Series(list5)
 
-## lists to dataframes
-df1 = 
+## Create DataFrame from lists or Series----------------------------------------
+#only works with vectors of the same length
+
+zip(list4, list5)
+list7 = range(60,65)
+zip1 = zip(list4, list5, list7)
+
+df1 = DataFrame(zip1)
+
+df2 = DataFrame(zip1, columns = ['two', 'apple', ':)']) #gives names to columns
+df2['two'] #extracts column 'two'.... the quotation marks are necessary
+
+df3 = DataFrame(zip1, columns = [2, '2', ':)']) #shows that column names can be int and str
+#calling rows
+df2[1:3] #slices[n,m] n to m-1, show 
+df3[['2',':)']][3:4] #pulls row 3 from columns '2' and ':)'   the bracket order matters here
+
+## make dataframe using dict notation-------------------------------------------
+df4 = DataFrame({':(': list4, 9 : list6}) # {} makes a dictionary in python, the first item is the key
+# notation {key1: item(s) in key1, key2: items in key2}
+
+
+#
+
+
+
+
+
+
+
+
+
 
 
 
