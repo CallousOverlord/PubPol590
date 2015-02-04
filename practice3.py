@@ -21,10 +21,19 @@ df1.duplicated()
 df1.drop_duplicates()
 df1 = df1.drop_duplicates()
 
+
 #Pulling rows where consump is missing data-------------------------------------
+#df1[df1.consump.isnull()] #dan code
+df1[df1.duplicated(['panid', 'date'])] #dan code, nothing showes up
+t_b = df1.duplicated(['panid','date'])
+b_t = df1.duplicated(['panid', 'date'], take_last = True)
+
+answer = df1[~(t_b | b_t)]
+print answer.consump.mean()
+
 df1['consump'].isnull() #ids missing data in consump column in edited df1
-missing = df1['consump'].isnull()
-df1[missing] #shows only the rows that are missing consump data
+miss = df1['consump'].isnull()
+df1[miss] #shows only the rows that are missing consump data
 
 #-------------------------------Working on this---------------------------------
 
@@ -35,7 +44,8 @@ df1[missing] #shows only the rows that are missing consump data
 df1.duplicated(['panid', 'date'])
 pdrows = df1.duplicated(['panid', 'date'])
 df1[pdrows] #shows rows that are not duplicated
-df1 = df1.drop_duplicates(['panid', 'date']) #removes duplicates of panid and date from db1
+df2 = df1.drop_duplicates(['panid', 'date'], take_last = True) #removes duplicates of panid and date from db1
+
 
 ## Mean of variable consump
 print df1['consump'].mean()
